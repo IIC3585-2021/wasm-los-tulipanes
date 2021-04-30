@@ -1,3 +1,8 @@
+# Run C code
+Compile using `clang -o main.out ./src/main.c ./src/matrix.c` for macOS or `clang -o main.out ./src/main.c ./src/matrix.c` for Linux.
+
+After compilation run `./main.out`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
