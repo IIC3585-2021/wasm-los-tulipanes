@@ -5,19 +5,6 @@
 
 // int ary[10][10],completed[10],n,cost=0;
 
-void matrix_test(int size, int* list)
-{
-  // REVISA MATRIX.H Y MATRIX.C
-  Matrix* mat = matrix_init(size, list);
-
-  printf("La matriz vale:\n");
-
-  matrix_print(mat);
-
-  // Liberamos ambas matrices
-  matrix_destroy(mat);
-}
-
 int least(int c, int n, int cost, int* completed, Matrix* mat)
 {
 	int i , nc = 999;
@@ -36,6 +23,7 @@ int least(int c, int n, int cost, int* completed, Matrix* mat)
  
 	if(min!=999)
 		cost+=kmin;
+		// printf("cost in least = %i\n", cost);
  
 	return nc;
 }
@@ -46,15 +34,16 @@ void mincost(int city, int n, int cost, int* completed, Matrix* mat, int* soluti
  
 	completed[city] = 1;
 	// printf("city = %i\n", city);
-	solution[counter] = city + 1;
+	solution[counter] = city;
 	printf("%d--->",city+1);
 	ncity=least(city, n, cost, completed, mat);
-	printf("TSP cost in counter(%i)= %i\n",counter, cost);
+	// printf("TSP cost in counter(%i)= %i\n",counter, cost);
 	if(ncity == 999)
 	{
 		ncity = 0;
 		printf("%d\n",ncity+1);
 		cost += mat -> matrix[city][ncity];
+		// TSP cost invalido, no funciona aun
 		printf("TSP cost = %i\n", cost);
 		return;
 	}
@@ -71,12 +60,13 @@ int main(int argc, char** argv)
 	// int list[16] = {0,4,1,3,4,0,2,1,1,2,0,0,3,1,0,0};
 	int list[16] = {0,4,1,3,4,0,2,1,1,2,0,5,3,1,5,0};
 	// int list[9] = {0,1,1,1,0,2,1,2,0};
-  // matrix_test(3, list);
 	Matrix* mat = matrix_init(n, list);
 	matrix_print(mat);
+	printf("Solucion original del programa\n");
 	mincost(0, n, cost, completed, mat, solution, counter);
+	printf("Solucion refactorizada en formato lista:\n");
 	for(int i = 0; i < 5; i++){
-		printf("%i--->", solution[i]);
+		printf("%i--->", solution[i] + 1);
 	}
 
   return 0;
