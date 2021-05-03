@@ -1,4 +1,4 @@
-import Module from './main'
+import Module from './pf'
 
 
 const makePtrOfMatrix = (myModule, matrix, num) => {
@@ -24,21 +24,22 @@ const makePtrSimple = (myModule, num) => {
 
 // Función para obtener solución
 const getSolutionFromPtr = (myModule, ptr, num) => {
+  const result = [];
   for (let i = 0; i < num; i++) {
-    result[i] = myModule.getValue(ptr + i * 4, 'i32');
+    result.push(myModule.getValue(ptr + i * 4, 'i32'));
   }
   return result;
 };
 
 const getShortestPath = (matrix) => {
-    Module().then(function (mymod) {
-        let N = matrix.length();
-        let matrixPtr = makePtrOfMatrix(mymod, matrix, N);
-        let solutionPtr = makePtrSimple(mymod, N);
-        mymod._DP_tsp(matrixPtr, N, solutionPtr);
-        let result = getSolutionFromPtr(mymod, solutionPtr, N);
-        return result;
-      });
+  Module().then(function (mymod) {
+    let N = matrix.length();
+    let matrixPtr = makePtrOfMatrix(mymod, matrix, N);
+    let solutionPtr = makePtrSimple(mymod, N);
+    mymod._DP_tsp(matrixPtr, N, solutionPtr);
+    let result = getSolutionFromPtr(mymod, solutionPtr, N);
+    return result;
+  });
 }
 
 export default getShortestPath;
