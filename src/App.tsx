@@ -4,6 +4,7 @@ import './App.css';
 import Menu from './components/Menu';
 import Graph from './components/Graph';
 import { Adjacency } from './adjacency';
+import getShortestPath from './solver';
 
 const adjacencyTable = new Adjacency();
 
