@@ -1,7 +1,9 @@
 # Run C code
-Compile using `clang -o main.out ./src/main.c ./src/matrix.c` for macOS or `clang -o main.out ./src/main.c ./src/matrix.c` for Linux.
+Compile using `clang -o main.out ./src_c/main.c` for macOS or `gcc -o main.out ./src_c/main.c` for Linux.
 
 After compilation run `./main.out`
+
+This code is an adaptation of [ivinjohn98](https://github.com/ivinjohn98/Dynamic-Programming-Approach-to-Travelling-Salesman-Problem) TSP solution. We do not own any of the original code.
 
 # Getting Started with Create React App
 
