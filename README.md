@@ -8,3 +8,10 @@ This code is an adaptation of [ivinjohn98](https://github.com/ivinjohn98/Dynamic
 # Para compilar
 
 Seguir https://stackoverflow.com/questions/60363032/proper-way-to-load-wasm-module-in-react-for-big-files-more-than-4kb religiosamente
+
+# Correr Aplicación
+
+1. install dependencies
+```npm i```
+
+2. ```npm start```
