@@ -6,8 +6,10 @@ import { Adjacency, Edge } from '../adjacency';
 
 export default function Menu({
   adjacencyTable,
+  solve,
 }: {
   adjacencyTable: Adjacency;
+  solve: () => void;
 }) {
   const [edges, setEdges] = useState<Edge[]>([]);
 
@@ -23,7 +25,7 @@ export default function Menu({
       <Heading color="brand.200" size="xl" m={5} textAlign="center">
         Travelling Salesman
       </Heading>
-      <EdgeInput addEdge={addEdge} />
+      <EdgeInput addEdge={addEdge} solve={solve} />
 
       <EdgeList edges={edges} />
     </Flex>

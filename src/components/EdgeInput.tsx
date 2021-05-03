@@ -7,8 +7,10 @@ import { BsCheck, BsPlus } from 'react-icons/bs';
 
 export default function EdgeInput({
   addEdge,
+  solve,
 }: {
   addEdge: (edge: Edge) => void;
+  solve: () => void;
 }) {
   const [edgeText, setEdgeText] = useState('');
   const wasEdited = useRef(false);
@@ -79,9 +81,11 @@ export default function EdgeInput({
       >
         <BsPlus fontSize="2rem" />
       </Button>
+
       <Spacer flex={1} />
+
       <Button bg="brand.200" flex={1} height="100%" color="brand.100">
-        <BsCheck fontSize="2rem" />
+        <BsCheck fontSize="2rem" onClick={solve} />
       </Button>
     </Flex>
   );

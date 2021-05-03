@@ -12,7 +12,7 @@ export default function EdgeList({ edges }: { edges: Edge[] }) {
           .map((e, i) => {
             return (
               <ListItem key={i}>
-                <Text fontSize="xl">{e.toString()}</Text>{' '}
+                <Text fontSize="xl">{e.toString()}</Text>
               </ListItem>
             );
           })}
