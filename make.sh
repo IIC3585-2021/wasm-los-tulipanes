@@ -8,4 +8,6 @@ emcc ./pathfinder/main.c \
       -s 'EXPORT_NAME="pathfinder"' \
       -s 'ENVIRONMENT="web"' \
       --bind \
+      -s EXPORTED_FUNCTIONS="['_calloc', '_DP_tsp']" \
+      -s EXPORTED_RUNTIME_METHODS='["getValue", "setValue"]' \
       -o pf.mjs || exit 1

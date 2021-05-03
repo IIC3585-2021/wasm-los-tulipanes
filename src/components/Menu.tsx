@@ -7,25 +7,25 @@ import { Adjacency, Edge } from '../adjacency';
 export default function Menu({
   adjacencyTable,
   solve,
+  loading,
 }: {
   adjacencyTable: Adjacency;
   solve: () => void;
+  loading: boolean;
 }) {
   const [edges, setEdges] = useState<Edge[]>([]);
 
   const addEdge = (edge: Edge) => {
-    console.log(adjacencyTable.edges);
     adjacencyTable.addEdge(edge);
     setEdges([...adjacencyTable.edges]);
-    console.log(adjacencyTable.edges);
   };
 
   return (
-    <Flex flexDirection="column" flex={1} p={10} maxHeight={window.innerHeight}>
+    <Flex flexDirection="column" flex={2} p={10} maxHeight={window.innerHeight}>
       <Heading color="brand.200" size="xl" m={5} textAlign="center">
         Travelling Salesman
       </Heading>
-      <EdgeInput addEdge={addEdge} solve={solve} />
+      <EdgeInput addEdge={addEdge} solve={solve} loading={loading} />
 
       <EdgeList edges={edges} />
     </Flex>

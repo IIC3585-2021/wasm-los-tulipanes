@@ -32,8 +32,8 @@ const getSolutionFromPtr = (myModule, ptr, num) => {
 };
 
 const getShortestPath = (matrix) => {
-  Module().then(function (mymod) {
-    let N = matrix.length();
+  return Module().then(function (mymod) {
+    let N = matrix.length;
     let matrixPtr = makePtrOfMatrix(mymod, matrix, N);
     let solutionPtr = makePtrSimple(mymod, N);
     mymod._DP_tsp(matrixPtr, N, solutionPtr);

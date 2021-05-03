@@ -4,13 +4,13 @@
 #include <limits.h>
 struct SubSet
 {
-	int data;
+	uint32_t data;
 	struct SubSet *next;
 }**S;
 
-void tableA(int **A,int n)
+void tableA(uint32_t **A,uint32_t n)
 {
-    int i,j;
+    uint32_t i,j;
     for(i=0;i<pow(2,n-1);i++)
     {
         for(j=0;j<n;j++)
@@ -21,9 +21,9 @@ void tableA(int **A,int n)
     }
 }
 
-void tableS(int n)
+void tableS(uint32_t n)
 {
-    int i;
+    uint32_t i;
     struct SubSet *temp;
     for(i=0;i<pow(2,n-1);i++)
 	{
@@ -37,7 +37,7 @@ void tableS(int n)
 	}
 }
 
-struct SubSet *Create_element_SubSet(int i)	//function to Create an element in a subset		returns {i}
+struct SubSet *Create_element_SubSet(uint32_t i)	//function to Create an element in a subset		returns {i}
 {
 	struct SubSet *temp;
 	temp = (struct SubSet*)malloc(sizeof(struct SubSet));
@@ -46,7 +46,7 @@ struct SubSet *Create_element_SubSet(int i)	//function to Create an element in a
 	return temp;
 }
 
-int isHit(int i,int j)				//function to Check if j'th bit is one in i		returns 1/0
+uint32_t isHit(uint32_t i,uint32_t j)				//function to Check if j'th bit is one in i		returns 1/0
 {
 	while(j > 0)
 	{
@@ -58,11 +58,11 @@ int isHit(int i,int j)				//function to Check if j'th bit is one in i		returns 1
 	return 0;
 }
 
-void Create_SubSet(int n)			//function to create all 2^n subsets
+void Create_SubSet(uint32_t n)			//function to create all 2^n subsets
 {
 	S = (struct SubSet**)malloc(sizeof(struct SubSet*)*pow(2,n-1));
 	struct SubSet *temp,*Head = NULL,*Tail = NULL;
-	int i,j,k,flag = 0;
+	uint32_t i,j,k,flag = 0;
 	for(i=0;i<pow(2,n-1);i++)
 	{
 		for(j=0;j<n;j++)
@@ -86,7 +86,7 @@ void Create_SubSet(int n)			//function to create all 2^n subsets
 	//tableS(n);
 }
 
-void Solution(int **Sol,int i,int j, int *Solution_formated, int counter)		//function to print the Travelling Salesman Optimum path
+void Solution(uint32_t **Sol,uint32_t i,uint32_t j, uint32_t *Solution_formated, uint32_t counter)		//function to pruint32_t the Travelling Salesman Optimum path
 {
 	counter ++;
 	if(i==0)
@@ -99,20 +99,20 @@ void Solution(int **Sol,int i,int j, int *Solution_formated, int counter)		//fun
 	// printf("\nValor = %d, counter = %i",Sol[i][j], counter);
 	Solution_formated[counter] = Sol[i][j];
 	printf("%d->",Sol[i][j]);
-	Solution(Sol,i-(int)pow(2,Sol[i][j]-1),Sol[i][j], Solution_formated, counter);
+	Solution(Sol,i-(uint32_t)pow(2,Sol[i][j]-1),Sol[i][j], Solution_formated, counter);
 }
 
-void DP_tsp(int **D,int n, int *Solution_formated)			//function which uses dynamic programming technique to solve Travelling Salesman problem
+void DP_tsp(uint32_t **D,uint32_t n, uint32_t *Solution_formated)			//function which uses dynamic programming technique to solve Travelling Salesman problem
 {
-	int counter = 0;
-	int i,j,**A,**Sol,minval,x;
+	uint32_t counter = 0;
+	uint32_t i,j,**A,**Sol,minval,x;
 	struct SubSet *temp;
-	A = (int**)malloc(sizeof(int*)*pow(2,n-1));
+	A = (uint32_t**)malloc(sizeof(uint32_t*)*pow(2,n-1));
 	for(i=0;i<pow(2,n);i++)
-		A[i] = (int*)malloc(sizeof(int)*n);
-	Sol = (int**)malloc(sizeof(int*)*pow(2,n-1));
+		A[i] = (uint32_t*)malloc(sizeof(uint32_t)*n);
+	Sol = (uint32_t**)malloc(sizeof(uint32_t*)*pow(2,n-1));
 	for(i=0;i<pow(2,n);i++)
-		Sol[i] = (int*)malloc(sizeof(int)*n);
+		Sol[i] = (uint32_t*)malloc(sizeof(uint32_t)*n);
 	Create_SubSet(n);
 	for(i=0;i<pow(2,n-1);i++)
 	{
@@ -127,7 +127,7 @@ void DP_tsp(int **D,int n, int *Solution_formated)			//function which uses dynam
 				Sol[i][j] = -1;
 				while(temp != NULL)
 				{
-					x = D[temp->data][j] + A[i-(int)pow(2,temp->data-1)][temp->data];
+					x = D[temp->data][j] + A[i-(uint32_t)pow(2,temp->data-1)][temp->data];
 					if(x < minval)
 					{
 						minval = x;
@@ -141,27 +141,27 @@ void DP_tsp(int **D,int n, int *Solution_formated)			//function which uses dynam
 	}
 	//uncomment the below line for printing table entries in A
     //tableA(A,n);
-	printf("the shortest possible route that visits every city exactly once and returns to the starting point is:-\n");
+	printf("the shortest possible route that visits every city exactly once and returns to the starting pouint32_t is:-\n");
 	printf("0->");
 	Solution_formated[0] = 0;
-	Solution(Sol,(int)pow(2,n-1)-1,0, Solution_formated, counter);
+	Solution(Sol,(uint32_t)pow(2,n-1)-1,0, Solution_formated, counter);
 }
 
 int main()
 {
-	int n,**D,i,j;
+	uint32_t n,**D,i,j;
 	printf("Enter the number of cities\n");
 	scanf("%d",&n);
 	printf("Enter the distance between each cities\n");
-	D = (int**)malloc(sizeof(int*)*n);
+	D = (uint32_t**)malloc(sizeof(uint32_t*)*n);
 	for(i=0;i<n;i++)
-		D[i] = (int*)malloc(sizeof(int)*n);
+		D[i] = (uint32_t*)malloc(sizeof(uint32_t)*n);
 	for(i=0;i<n;i++)
 		for(j=0;j<n;j++)
 			scanf("%d",&D[i][j]);
-	int Solution_formated[4];
+	uint32_t Solution_formated[4];
 	DP_tsp(D,n, Solution_formated);
-	for(int k = 0; k < n+1; k++){
+	for(uint32_t k = 0; k < n+1; k++){
 		printf("%i,",Solution_formated[k]);
 	}
 	return 0;
